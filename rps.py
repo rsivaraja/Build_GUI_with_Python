@@ -8,13 +8,30 @@ window.title('Rock Paper Scissors')
 window.config(background='gray13')
 #fonts=font.families()
 #print(fonts)
+pscore=0
+cscore=0
 def game(player_choice):
+    global cscore
+    global pscore
     print(player_choice)
     items=['rock','paper','scissors']
     computer_choice=random.choice(items)
     yselect.config(text='You Selected: '+player_choice)
     cselect.config(text='Computer Selected: '+computer_choice)
+    if (player_choice=='rock' and computer_choice=='paper') or (player_choice=='paper' and computer_choice=='scissors') or (player_choice=='scissors' and computer_choice=='rock'):
+        title2.config(text='Computer Won!')
+        cscore+=1
+        compsc.config(text='Computer Score:'+str(cscore))
+
+    elif player_choice==computer_choice:
+        title2.config(text='Tie!')
+    else:
+        title2.config(text='You Won!')
+        pscore+=1
+        playersc.config(text='Player Score:'+str(pscore))
     
+
+
 title=Label(window,bg='gray13',fg='white',text='Rock Paper Scissors',font=('System','20','normal'))
 title.grid(row=1,column=1,padx=200)
 title2=Label(window,bg='gray13',fg='green2',text='Sample',font=('System','15','normal'))
